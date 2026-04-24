@@ -74,3 +74,10 @@
 - User モデルの relation 設定完了
 - Item モデルの relation 設定完了
 - Category モデルの relation 設定完了
+
+## 完了
+- ono/model-check ブランチ作成
+- Like モデル確認完了
+- Comment モデル確認完了
+- Purchase モデル確認完了
+
