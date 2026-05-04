@@ -10,6 +10,7 @@ use App\Models\Item;
 use App\Models\Like;
 use App\Models\Comment;
 use App\Models\Purchase;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -35,6 +36,11 @@ class User extends Authenticatable
         return $this->hasMany(Purchase::class);
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -44,10 +50,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'profile_image',
-        'postal_code',
-        'address',
-        'building',
     ];
 
     /**

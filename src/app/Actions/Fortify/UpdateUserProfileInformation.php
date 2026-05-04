@@ -19,7 +19,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-
             'email' => [
                 'required',
                 'string',
@@ -27,6 +26,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'profile_image' => ['nullable', 'string', 'max:255'],
+            'postal_code' => ['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'building' => ['nullable', 'string', 'max:255'],
         ])->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email &&
@@ -38,6 +41,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
             ])->save();
         }
+
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'profile_image' => $input['profile_image'] ?? null,
+                'postal_code' => $input['postal_code'] ?? null,
+                'address' => $input['address'] ?? null,
+                'building' => $input['building'] ?? null,
+            ]
+        );
     }
 
     /**
@@ -52,6 +65,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
+
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'profile_image' => $input['profile_image'] ?? null,
+                'postal_code' => $input['postal_code'] ?? null,
+                'address' => $input['address'] ?? null,
+                'building' => $input['building'] ?? null,
+            ]
+        );
 
         $user->sendEmailVerificationNotification();
     }
