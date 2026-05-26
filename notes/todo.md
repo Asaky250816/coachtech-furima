@@ -31,17 +31,18 @@
 - Item モデルの relation 設定完了
 - Category モデルの relation 設定完了
 
-2026-05-05
+2026/05/26
 
-## 今日やること
-- Request クラス一覧を確定する
-- CommentRequest を作成する
-- PurchaseRequest を作成する
-- AddressRequest を作成する
-- ProfileRequest を作成する
-- ExhibitionRequest を作成する
-- Controller と Request の対応メモを残す
+### 実施内容
+- `php artisan storage:link` を実行
+- `public/storage` から `storage/app/public` へのシンボリックリンクを作成
+- 画像保存用フォルダを作成
+  - `storage/app/public/profile_images`
+  - `storage/app/public/item_images`
 
-## 今日のゴール
-- Request クラス整理を進める
-- WBS の「Requestクラス一覧を整理する」を完了に近づける
+### 確認結果
+- `public/storage` のリンク作成を確認
+- `profile_images` と `item_images` フォルダの作成を確認
+
+### WBS更新
+- 「storageの保存確認をする」：完了
