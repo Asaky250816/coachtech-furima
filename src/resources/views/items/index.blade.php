@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品一覧</title>
 </head>
+
 <body>
     <h1>商品一覧画面</h1>
+
+    @auth
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">ログアウト</button>
+        </form>
+    @endauth
+
+    @guest
+        <p><a href="{{ route('login') }}">ログインはこちら</a></p>
+    @endguest
 </body>
+
 </html>
