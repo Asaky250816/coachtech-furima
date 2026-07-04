@@ -20,6 +20,11 @@
 
     <h2>商品一覧</h2>
 
+    <form action="/" method="GET">
+        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="商品名で検索">
+        <button type="submit">検索</button>
+    </form>
+
     @if ($items->isEmpty())
         <p>商品データがありません</p>
     @else

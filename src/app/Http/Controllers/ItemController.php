@@ -14,6 +14,10 @@ class ItemController extends Controller
             $query->where('user_id', '!=', auth()->id());
         }
 
+        if (request('keyword')) {
+            $query->where('name', 'like', '%' . request('keyword') . '%');
+        }
+
         $items = $query->with('purchase')->latest()->get();
 
         return view('items.index', compact('items'));
