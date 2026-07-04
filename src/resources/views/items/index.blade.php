@@ -27,6 +27,11 @@
             @foreach ($items as $item)
                 <div>
                     <img src="{{ $item->image_path }}" alt="{{ $item->name }}" width="200">
+
+                    @if ($item->purchase)
+                        <p>Sold</p>
+                    @endif
+
                     <p>{{ $item->name }}</p>
                 </div>
             @endforeach

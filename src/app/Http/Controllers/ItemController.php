@@ -14,7 +14,7 @@ class ItemController extends Controller
             $query->where('user_id', '!=', auth()->id());
         }
 
-        $items = $query->latest()->get();
+        $items = $query->with('purchase')->latest()->get();
 
         return view('items.index', compact('items'));
     }
