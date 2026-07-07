@@ -22,4 +22,11 @@ class ItemController extends Controller
 
         return view('items.index', compact('items'));
     }
+
+    public function show(Item $item)
+    {
+        $item->load('purchase');
+
+        return view('items.show', compact('item'));
+    }
 }

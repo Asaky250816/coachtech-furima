@@ -17,6 +17,8 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [ItemController::class, 'index']);
 
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 });

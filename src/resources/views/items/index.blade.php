@@ -31,13 +31,19 @@
         <div>
             @foreach ($items as $item)
                 <div>
-                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}" width="200">
+                    <a href="{{ route('items.show', $item) }}">
+                        <img src="{{ $item->image_path }}" alt="{{ $item->name }}" width="200">
+                    </a>
 
                     @if ($item->purchase)
                         <p>Sold</p>
                     @endif
 
-                    <p>{{ $item->name }}</p>
+                    <p>
+                        <a href="{{ route('items.show', $item) }}">
+                            {{ $item->name }}
+                        </a>
+                    </p>
                 </div>
             @endforeach
         </div>
