@@ -16,6 +16,16 @@
     <h2>{{ $item->name }}</h2>
     <p>ブランド名：{{ $item->brand_name ?? 'なし' }}</p>
     <p>価格：¥{{ number_format($item->price) }}</p>
+
+    <p>
+        カテゴリ：
+        @forelse ($item->categories as $category)
+            {{ $category->name }}
+        @empty
+            なし
+        @endforelse
+    </p>
+
     <p>商品説明：{{ $item->description }}</p>
     <p>商品の状態：{{ $item->condition }}</p>
 
