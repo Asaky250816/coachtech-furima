@@ -26,6 +26,7 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         $item->load(['purchase', 'categories', 'comments.user']);
+        $item->loadCount(['likes', 'comments']);
 
         return view('items.show', compact('item'));
     }
