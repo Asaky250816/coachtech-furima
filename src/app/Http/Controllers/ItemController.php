@@ -25,7 +25,7 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
-        $item->load(['purchase', 'categories']);
+        $item->load(['purchase', 'categories', 'comments.user']);
 
         return view('items.show', compact('item'));
     }

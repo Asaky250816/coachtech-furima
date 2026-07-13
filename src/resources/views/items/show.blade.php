@@ -29,6 +29,18 @@
     <p>商品説明：{{ $item->description }}</p>
     <p>商品の状態：{{ $item->condition }}</p>
 
+    <h3>コメント一覧</h3>
+
+    @forelse ($item->comments as $comment)
+        <div>
+            <p>投稿者：{{ optional($comment->user)->name ?? 'ユーザー' }}</p>
+            <p>{{ $comment->content }}</p>
+        </div>
+    @empty
+        <p>コメントはまだありません</p>
+    @endforelse
+
     <p><a href="/">商品一覧へ戻る</a></p>
 </body>
 </html>
+
