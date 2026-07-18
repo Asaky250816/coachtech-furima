@@ -31,6 +31,28 @@
     <p>商品説明：{{ $item->description }}</p>
     <p>商品の状態：{{ $item->condition }}</p>
 
+    <h3>コメントする</h3>
+
+    @auth
+        <form action="{{ route('comments.store', $item) }}" method="POST">
+            @csrf
+
+            <textarea name="content" rows="4" cols="50">{{ old('content') }}</textarea>
+
+            @error('content')
+                <p>{{ $message }}</p>
+            @enderror
+
+            <br>
+
+            <button type="submit">コメントを送信する</button>
+        </form>
+    @endauth
+
+    @guest
+        <p>コメントするにはログインしてください</p>
+    @endguest
+
     <h3>コメント一覧</h3>
 
     @forelse ($item->comments as $comment)
