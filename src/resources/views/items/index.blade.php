@@ -20,7 +20,17 @@
 
     <h2>商品一覧</h2>
 
+    <p>
+        <a href="/">おすすめ</a>
+        |
+        <a href="/?tab=mylist">マイリスト</a>
+    </p>
+
     <form action="/" method="GET">
+        @if (request('tab') === 'mylist')
+            <input type="hidden" name="tab" value="mylist">
+        @endif
+
         <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="商品名で検索">
         <button type="submit">検索</button>
     </form>

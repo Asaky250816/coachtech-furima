@@ -8,18 +8,27 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $query = Item::query();
+        if (request('tab') === 'mylist') {
+            if (! auth()->check()) {
+                $items = collect();
 
-        if (auth()->check()) {
-            $query->where('user_id', '!=', auth()->id());
+                return view('items.index', compact('items'));
+            }
+
+            $query = auth()->user()->likedItems();
+        } else {
+            $query = Item::query();
+
+            if (auth()->check()) {
+                $query->where('user_id', '!=', auth()->id());
+            }
         }
 
         if (request('keyword')) {
             $query->where('name', 'like', '%' . request('keyword') . '%');
         }
 
-        $items = $query->with('purchase')->latest()->get();
-
+        $items = $query->with('purchase')->latest('items.created_at')->get();
         return view('items.index', compact('items'));
     }
 
