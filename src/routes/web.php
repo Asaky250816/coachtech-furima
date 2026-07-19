@@ -25,4 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/item/{item}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::post('/item/{item}/likes', [LikeController::class, 'store'])->name('likes.store');
+    Route::delete('/item/{item}/likes', [LikeController::class, 'destroy'])->name('likes.destroy');
 });

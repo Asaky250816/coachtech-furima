@@ -20,10 +20,18 @@
     <p>いいね数：{{ $item->likes_count }}</p>
 
     @auth
-        <form action="{{ route('likes.store', $item) }}" method="POST">
-            @csrf
-            <button type="submit">いいねする</button>
-        </form>
+        @if ($item->likes()->where('user_id', auth()->id())->exists())
+            <form action="{{ route('likes.destroy', $item) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">いいね解除</button>
+            </form>
+        @else
+            <form action="{{ route('likes.store', $item) }}" method="POST">
+                @csrf
+                <button type="submit">いいねする</button>
+            </form>
+        @endif
     @endauth
 
     @guest

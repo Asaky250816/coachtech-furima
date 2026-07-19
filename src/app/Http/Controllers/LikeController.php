@@ -14,4 +14,13 @@ class LikeController extends Controller
 
         return redirect()->route('items.show', $item);
     }
+
+    public function destroy(Item $item)
+    {
+        $item->likes()
+            ->where('user_id', auth()->id())
+            ->delete();
+
+        return redirect()->route('items.show', $item);
+    }
 }
