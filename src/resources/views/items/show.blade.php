@@ -16,7 +16,20 @@
     <h2>{{ $item->name }}</h2>
     <p>ブランド名：{{ $item->brand_name ?? 'なし' }}</p>
     <p>価格：¥{{ number_format($item->price) }}</p>
+
     <p>いいね数：{{ $item->likes_count }}</p>
+
+    @auth
+        <form action="{{ route('likes.store', $item) }}" method="POST">
+            @csrf
+            <button type="submit">いいねする</button>
+        </form>
+    @endauth
+
+    @guest
+        <p>いいねするにはログインしてください</p>
+    @endguest
+
     <p>コメント数：{{ $item->comments_count }}</p>
 
     <p>
