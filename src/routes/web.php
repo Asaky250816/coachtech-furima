@@ -23,6 +23,7 @@ Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/item/{item}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::post('/item/{item}/likes', [LikeController::class, 'store'])->name('likes.store');
     Route::delete('/item/{item}/likes', [LikeController::class, 'destroy'])->name('likes.destroy');
