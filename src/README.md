@@ -12,6 +12,7 @@ docker compose up -d --build
 ```
 
 ### PHPコンテナに入る
+
 ```bash
 docker compose exec php bash
 ```
@@ -66,3 +67,8 @@ mkdir -p storage/app/public/item_images
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
 
+## 動作確認ブランチ
+
+本リポジトリは `main` ブランチで動作確認できます。
+
+開発は機能ごとにブランチを分けて進め、提出時に実装内容を `main` ブランチへマージしています。
